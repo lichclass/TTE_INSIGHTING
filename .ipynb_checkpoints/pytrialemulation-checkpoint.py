@@ -16,8 +16,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm, multivariate_normal
 
 # Ignore PerfectSeparationWarning
-warnings.filterwarnings("ignore", category=PerfectSeparationWarning)
-
+warnings.filterwarnings("ignore")
 
 class TrialSequence:
     def __init__(self, estimand):
