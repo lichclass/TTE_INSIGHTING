@@ -1,21 +1,20 @@
 import os
 import pickle
+import warnings
+import math
+import re
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
+import matplotlib.pyplot as plt
 from statsmodels.formula.api import glm
 from typing import Optional, Dict, Any, List
 from statsmodels.stats.sandwich_covariance import cov_cluster
-from statsmodels.genmod.generalized_linear_model import PerfectSeparationWarning
-import warnings
-import math
-import re
 from scipy.stats import norm
-import matplotlib.pyplot as plt
 from scipy.stats import norm, multivariate_normal
 
-# Ignore PerfectSeparationWarning
+# Ignore All Warnings
 warnings.filterwarnings("ignore")
 
 class TrialSequence:
@@ -1068,7 +1067,6 @@ class StatsGLMLogit:
         # IMPORTANT: include the formula in the returned model dictionary.
         model_dict = {"params": results_robust.params, "cov_params": results_robust.cov_params(), "formula": formula}
         return {"model": model_dict, "vcov": results_robust.cov_params(), "summary": summary_dict}
-
 
 
 def _build_design_matrix(newdata, model_terms):
